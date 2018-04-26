@@ -2,6 +2,7 @@
 
 const server = require('../lib/server');
 const superagent = require('superagent');
+const logger = require('../lib/logger');
 
 const testPort = 5000;
 const mockResource = { title: 'test title', content: 'test content' };
@@ -18,7 +19,7 @@ describe('VALID request to the API', () => {
       return superagent.post(`:${testPort}/api/v1/doodad`)
         .send(mockResource)
         .then((res) => {
-          console.log(res.body);
+          logger.log(logger.INFO, res.body);
           mockId = res.body.id; // HINT: Why do we need to reassign this?
           expect(res.body.title).toEqual(mockResource.title);
           expect(res.body.content).toEqual(mockResource.content);
