@@ -47,20 +47,19 @@ Router.prototype.route = function route() {
       bodyParser(req),
     ])
       .then(() => {
-        if (typeof this.route[req.method][req.url.pathname] === 'function') {
-          this.route[req.method][req.url.pathname](req, res);
-          return undefined; // fixes linter for line 58
+        if (typeof this.routes[req.method][req.url.pathname] === 'function') {
+          this.routes[req.method][req.url.pathname](req, res);
+          return;
         }
-
+        
         res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.write('Route not found');
+        res.write('THEN: Route not found');
         res.end();
-        return undefined;
       })
       .catch((err) => {
         if (err instanceof SyntaxError) {
           res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.write('Route not found');
+          res.write('CATCH: Route not found');
           res.end();
           return undefined;
         }

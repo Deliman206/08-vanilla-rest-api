@@ -51,4 +51,46 @@ module.exports = function routeDoodad(router) {
       });
     return undefined;
   });
+  router.get('/api/v1/doodad/all', (req, res) => {
+    storage.fetchAll('Doodad')
+      .then((item) => {
+        const arrayOfItems = [];
+        Object.keys(item).forEach(id => arrayOfItems.push(item[id].id));
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify(arrayOfItems));
+        res.end();
+        return undefined;
+      })
+      .catch((err) => {
+        logger.log(logger.ERROR, err, JSON.stringify(err));
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.write('Resource not found');
+        res.end();
+        return undefined;
+      });
+    return undefined;
+  });
+  router.delete('/api/v1/doodad/delete', (req, res) => {
+    if (!req.url.query.id) {
+      res.writeHead(400, { 'Content-Type': 'text/plain' });
+      res.write('Your request requires an id');
+      res.end();
+      return undefined;
+    }
+    storage.delete('Doodad', req.url.query.id)
+      .then(() => {
+        res.writeHead(202, { 'Content-Type': 'text/plain' });
+        res.write('Your Have successfully your Doodad!');
+        res.end();
+        return undefined;        
+      })
+      .catch((err) => {
+        logger.log(logger.ERROR, err, JSON.stringify(err));
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.write('Resource not found');
+        res.end();
+        return undefined;
+      });
+    return undefined;
+  });
 };

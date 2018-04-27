@@ -23,6 +23,7 @@ describe('VALID request to the API', () => {
           mockId = res.body.id; // HINT: Why do we need to reassign this?
           expect(res.body.title).toEqual(mockResource.title);
           expect(res.body.content).toEqual(mockResource.content);
+          expect(res.body.id).toEqual(mockId);
           expect(res.status).toEqual(201);
         });
     });

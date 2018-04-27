@@ -46,15 +46,24 @@ storage.fetchOne = function fetchOne(schema, id) {
   });
 };
 
-storage.fetchAll = function fetchAll() {
-  
+
+storage.fetchAll = function fetchAll(schema) {
+  return new Promise((resolve, reject) => {
+    if (!schema) return reject(new Error('expected schema name'));
+    const items = memory[schema];
+    return resolve(items);
+  });
 };
 
-storage.update = function update() {
-
+storage.delete = function del(schema, id) {
+  return new Promise((resolve, reject) => {
+    if (!schema) return reject(new Error('expected schema name'));
+    if (!id) return reject(new Error('expected id'));
+    if (!memory[schema]) return reject(new Error('schema not found'));
+    if (!memory[schema][id]) {
+      return reject(new Error('item not found'));
+    }
+    delete memory[schema][id];
+    return resolve(undefined);
+  });
 };
-
-storage.delete = function del() {
-
-};
-
