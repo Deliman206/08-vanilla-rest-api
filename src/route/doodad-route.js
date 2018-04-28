@@ -39,10 +39,9 @@ module.exports = function routeDoodad(router) {
   });
   router.get('/api/v1/doodad/all', (req, res) => {
     storage.fetchAll('Doodad')
-      .then((item) => {
-        const arrayOfItems = [];
-        Object.keys(item).forEach(id => arrayOfItems.push(item[id].id));
-        response.writeJSON(res, 200, arrayOfItems);
+      .then((items) => {
+        logger.log(logger.INFO, 'All files were retrieved');
+        response.writeJSON(res, 200, items);
       })
       .catch((err) => {
         logger.log(logger.ERROR, err, JSON.stringify(err));
