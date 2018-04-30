@@ -1,24 +1,3 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 08: Vanilla REST API
-======
-
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
-
-## Learning Objectives  
-* students will learn to use promise constructs to manage asynchronous code
-* students will learn to create a vanilla RESTful API with in-memory persistence
-
-## Requirements
-#### Configuration
-  * `.gitignore`
-  * `.eslintrc`
-  * `package.json`
-  * `README.md`
-
 #### Feature Tasks
 * create the following directories to organize your code:
   * `lib`
@@ -34,23 +13,25 @@
 * create a storage module that will store resources by their schema type (ex: note) and id
 
 ## Server Endpoints
-### `/api/simple-resource-name`
+### `/api/doodad`
 * `POST` request
  * pass data as stringifed JSON in the body of a **POST** request to create a new resource
 * `GET` request
  * pass `?id=<uuid>` as a query string parameter to retrieve a specific resource (as JSON)
  * `GET ALL (storage.fetchAll)` request
- * think of an API endpoint that makes sense, e.g.`/api/v1/notes`, and use that endpoint to retrieve an array of all the resource ID's
+ * think of an API endpoint that makes sense, e.g.`/api/v1/doodad/all`, and use that endpoint to retrieve an array of all the resource ID's
 * `DELETE` request
  * pass `?id=<uuid>` in the query string to **DELETE** a specific resource
  * this should return a 204 status code with no content in the body
 
 ## Tests
 * write a test to ensure that your api returns a status code of 404 for routes that have not been registered
-* write tests to ensure the `/api/simple-resource-name` endpoint responds as described for each condition below:
+* write tests to ensure the `/api/doodad` endpoint responds as described for each condition below:
  * `GET`: test 404, it should respond with 'not found' for valid requests made with an id that was not found
  * `GET`: test 400, it should respond with 'bad request' if no id was provided in the request
  * `GET`: test 200, it should contain a response body for a request made with a valid id
  * `POST`: test 400, it should respond with 'bad request' if no request body was provided or the body was invalid
  * `POST`: test 200, it should respond with the body content for a post request with a valid body
 
+## DRY
+This is a similar version to lab 08- RESTFUL API but it is DRYed out and uses the  `fs` module for storage instead of a temporary storage in a `memory` object.
