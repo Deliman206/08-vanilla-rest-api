@@ -2,14 +2,11 @@
 
 const http = require('http');
 
-// Router setup 
 const Router = require('./router');
 
 const router = new Router();
 require('../route/doodad-route')(router);
 
-// Application set up 
-// anonymous
 const app = http.createServer(router.route());
 
 const server = module.exports = {};

@@ -6,23 +6,12 @@ const urlParser = require('./url-parser');
 
 const Router = module.exports = function router() {
   this.routes = {
-    // {
-    //   '/api/v1/doodad': (req, res) => {},
-    //   '/api/v1/doodad/:id': (req, res) => {},
-    // }
     GET: {},
     POST: {},
     PUT: {},
     DELETE: {},
   };
 };
-
-// Example of bracket notation
-// const obj = {
-//   'some-prose': 'value'
-// }
-
-// obj['some-prose']
 
 Router.prototype.get = function get(endpoint, callback) {
   this.routes.GET[endpoint] = callback;

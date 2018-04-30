@@ -5,21 +5,6 @@ const logger = require('./logger');
 const storage = module.exports = {};
 const memory = {};
 
-// memory['Doodads']['123.567.89']['title']
-// memory = {
-//   'Doodads': {
-//     '1234.567.89': {
-//       'id': 'same id as key'
-//       'title': 'some title',
-//       'content': 'some content',
-//     }
-//   }
-// }
-
-
-// schema is the type of resource, in this case DOODAD, 
-// and it will just be a 'string' saying this is a doodad schema
-// item is an actual object we'll pass in to post a newly created doodad
 storage.create = function create(schema, item) {
   return new Promise((resolve, reject) => {
     if (!schema) return reject(new Error('Cannot create a new item, schema required'));

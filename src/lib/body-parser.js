@@ -18,10 +18,8 @@ module.exports = function bodyParser(req) {
     req.on('end', () => {
       try {
         req.body = JSON.parse(message);
-        console.log(req.body);
         return resolve(req);
       } catch (err) {
-        console.log('hit this in body parser');
         return reject(err);
       }
     });

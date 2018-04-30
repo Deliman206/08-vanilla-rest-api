@@ -1,24 +1,3 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 08: Vanilla REST API
-======
-
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
-
-## Learning Objectives  
-* students will learn to use promise constructs to manage asynchronous code
-* students will learn to create a vanilla RESTful API with in-memory persistence
-
-## Requirements
-#### Configuration
-  * `.gitignore`
-  * `.eslintrc`
-  * `package.json`
-  * `README.md`
-
 #### Feature Tasks
 * create the following directories to organize your code:
   * `lib`
@@ -34,13 +13,13 @@
 * create a storage module that will store resources by their schema type (ex: note) and id
 
 ## Server Endpoints
-### `/api/simple-resource-name`
+### `/api/doodad`
 * `POST` request
  * pass data as stringifed JSON in the body of a **POST** request to create a new resource
 * `GET` request
  * pass `?id=<uuid>` as a query string parameter to retrieve a specific resource (as JSON)
  * `GET ALL (storage.fetchAll)` request
- * think of an API endpoint that makes sense, e.g.`/api/v1/notes`, and use that endpoint to retrieve an array of all the resource ID's
+ * think of an API endpoint that makes sense, e.g.`/api/v1/doodad/all`, and use that endpoint to retrieve an array of all the resource ID's
 * `DELETE` request
  * pass `?id=<uuid>` in the query string to **DELETE** a specific resource
  * this should return a 204 status code with no content in the body
