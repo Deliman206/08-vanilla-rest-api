@@ -8,7 +8,6 @@ const response = require('../lib/response');
 module.exports = function routeDoodad(router) {
   router.post('/api/v1/doodad', (req, res) => {
     logger.log(logger.INFO, 'DOODAD-ROUTE: POST /api/v1/doodad');
-
     try {
       const newDoodad = new Doodad(req.body.title, req.body.content);
       storage.create('Doodad', newDoodad)
@@ -21,10 +20,10 @@ module.exports = function routeDoodad(router) {
     }
     return undefined;
   });
-
   router.get('/api/v1/doodad', (req, res) => {
     if (!req.url.query.id) {
       response.writeText(res, 400, 'Your request requires an id');
+      return undefined;
     }
 
     storage.fetchOne('Doodad', req.url.query.id)
